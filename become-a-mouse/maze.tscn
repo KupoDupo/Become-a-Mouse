@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://cu4epqrle8hdc"]
+[gd_scene load_steps=17 format=4 uid="uid://cu4epqrle8hdc"]
 
 [ext_resource type="Texture2D" uid="uid://ca2kys22xltla" path="res://Pipes.png" id="1_u11kd"]
 [ext_resource type="Script" uid="uid://c70vfmdb2uf0c" path="res://player.gd" id="2_1nuxl"]
 [ext_resource type="Texture2D" uid="uid://bm8gy0d3sikys" path="res://MouseIdle.png" id="3_ugm30"]
+[ext_resource type="Texture2D" uid="uid://cavf852dae6bu" path="res://toppng.com-white-circle-fade-png-corner-fade-to-black-transparent-png-600x600.png" id="4_1nuxl"]
+[ext_resource type="Shader" uid="uid://dfns168vl56b8" path="res://maze.gdshader" id="5_ugm30"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgab2"]
 texture = ExtResource("1_u11kd")
@@ -326,6 +328,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uywvj"]
 size = Vector2(17, 9.5)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgab2"]
+shader = ExtResource("5_ugm30")
+shader_parameter/player_pos = Vector2(0, 0)
+shader_parameter/radius = 150.0
+shader_parameter/screen_size = Vector2(0, 0)
+
 [node name="Maze" type="Node2D"]
 
 [node name="Pipes" type="TileMapLayer" parent="."]
@@ -335,12 +343,36 @@ tile_set = SubResource("TileSet_mjrf4")
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("2_1nuxl")
 
+[node name="PointLight2D" type="PointLight2D" parent="Player"]
+visible = false
+position = Vector2(464.00003, 305)
+scale = Vector2(0.10688624, 0.1032934)
+blend_mode = 2
+range_layer_max = 1
+texture = ExtResource("4_1nuxl")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(464, 305)
+zoom = Vector2(3, 3)
+
 [node name="MouseMove" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(113, 50)
+position = Vector2(463, 306)
 sprite_frames = SubResource("SpriteFrames_a8wcq")
 frame = 5
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(113, 49)
+position = Vector2(463, 305)
 shape = SubResource("RectangleShape2D_uywvj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_pgab2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
