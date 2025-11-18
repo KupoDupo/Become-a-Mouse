@@ -1,3 +1,4 @@
+// Shader for the darkening corners view in maze
 shader_type canvas_item;
 
 uniform vec2 player_pos;   // player position in pixels
