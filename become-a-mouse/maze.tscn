@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bm8gy0d3sikys" path="res://MouseIdle.png" id="3_ugm30"]
 [ext_resource type="Texture2D" uid="uid://cavf852dae6bu" path="res://toppng.com-white-circle-fade-png-corner-fade-to-black-transparent-png-600x600.png" id="4_1nuxl"]
 [ext_resource type="Shader" uid="uid://dfns168vl56b8" path="res://maze.gdshader" id="5_ugm30"]
-[ext_resource type="PackedScene" uid="uid://bxutwg7egoxdf" path="res://attention_bar.tscn" id="6_pgab2"]
-[ext_resource type="PackedScene" uid="uid://fx6mo3jjhdk3" path="res://house.tscn" id="7_nw8dj"]
-[ext_resource type="PackedScene" uid="uid://drd3xeeu5fpya" path="res://cat.tscn" id="8_xhimc"]
-[ext_resource type="Script" uid="uid://e4x1ax3m34h0" path="res://light_zone.gd" id="9_xhimc"]
+[ext_resource type="PackedScene" path="res://attention_bar.tscn" id="6_pgab2"]
+[ext_resource type="PackedScene" path="res://house.tscn" id="7_nw8dj"]
+[ext_resource type="PackedScene" path="res://cat.tscn" id="8_xhimc"]
+[ext_resource type="Script" path="res://light_zone.gd" id="9_xhimc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgab2"]
 texture = ExtResource("1_u11kd")
@@ -411,3 +411,64 @@ shape = SubResource("RectangleShape2D_glv4d")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(376, 2, 376, -15, 0, -15, 0, -272, 593, -272, 593, -16, 408, -16, 408, 1, 619, 2, 632, -305, -37, -313, -27, 8, 118, 0)
+
+[node name="GameOverUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="GameOver" type="ColorRect" parent="GameOverUI"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44313726, 0.44313726, 0.44313726, 0.47058824)
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOverUI/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -145.0
+offset_right = 163.5
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverUI/GameOver/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverUI/GameOver/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOverUI/GameOver/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Game Over"
+
+[node name="Restart" type="Button" parent="GameOverUI/GameOver/PanelContainer/MarginContainer/VBoxContainer/Label"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_top = 6.7058825
+anchor_right = 0.55
+anchor_bottom = 6.7058825
+offset_left = -62.0
+offset_top = -15.0
+offset_right = 62.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Again"
+
+[connection signal="pressed" from="GameOverUI/GameOver/PanelContainer/MarginContainer/VBoxContainer/Label/Restart" to="Player" method="_on_game_over_restart_pressed"]
