@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://cu4epqrle8hdc"]
+[gd_scene load_steps=18 format=4 uid="uid://cu4epqrle8hdc"]
 
 [ext_resource type="Texture2D" uid="uid://ca2kys22xltla" path="res://Pipes.png" id="1_u11kd"]
 [ext_resource type="Script" uid="uid://c70vfmdb2uf0c" path="res://player.gd" id="2_1nuxl"]
 [ext_resource type="Texture2D" uid="uid://bm8gy0d3sikys" path="res://MouseIdle.png" id="3_ugm30"]
 [ext_resource type="Texture2D" uid="uid://cavf852dae6bu" path="res://toppng.com-white-circle-fade-png-corner-fade-to-black-transparent-png-600x600.png" id="4_1nuxl"]
 [ext_resource type="Shader" uid="uid://dfns168vl56b8" path="res://maze.gdshader" id="5_ugm30"]
+[ext_resource type="PackedScene" uid="uid://bxutwg7egoxdf" path="res://attention_bar.tscn" id="6_pgab2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgab2"]
 texture = ExtResource("1_u11kd")
@@ -380,3 +381,5 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="AttentionBar" parent="." instance=ExtResource("6_pgab2")]
