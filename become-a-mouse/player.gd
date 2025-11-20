@@ -13,7 +13,7 @@ func _process(delta):
 # Player movement
 func _physics_process(delta):
 	var direction = Vector2.ZERO
-
+		
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 
@@ -21,3 +21,16 @@ func _physics_process(delta):
 
 	velocity = direction * speed
 	move_and_slide()
+
+
+
+
+#
+#
+#@export var ui: attention_ui
+#var numidk = 0.0
+#numidk += 0.2
+#
+#var field = clampi(numidk, 0.0, 100.0)
+#if ui:
+	#ui.set_attention(field)

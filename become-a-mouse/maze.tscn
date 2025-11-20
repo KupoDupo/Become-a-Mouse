@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cu4epqrle8hdc"]
+[gd_scene load_steps=20 format=4 uid="uid://cu4epqrle8hdc"]
 
 [ext_resource type="Texture2D" uid="uid://ca2kys22xltla" path="res://Pipes.png" id="1_u11kd"]
 [ext_resource type="Script" uid="uid://c70vfmdb2uf0c" path="res://player.gd" id="2_1nuxl"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cavf852dae6bu" path="res://toppng.com-white-circle-fade-png-corner-fade-to-black-transparent-png-600x600.png" id="4_1nuxl"]
 [ext_resource type="Shader" uid="uid://dfns168vl56b8" path="res://maze.gdshader" id="5_ugm30"]
 [ext_resource type="PackedScene" uid="uid://bxutwg7egoxdf" path="res://attention_bar.tscn" id="6_pgab2"]
+[ext_resource type="PackedScene" uid="uid://fx6mo3jjhdk3" path="res://house.tscn" id="7_nw8dj"]
+[ext_resource type="PackedScene" uid="uid://drd3xeeu5fpya" path="res://cat.tscn" id="8_xhimc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgab2"]
 texture = ExtResource("1_u11kd")
@@ -383,3 +385,9 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="AttentionBar" parent="." instance=ExtResource("6_pgab2")]
+
+[node name="House" parent="." instance=ExtResource("7_nw8dj")]
+position = Vector2(-95, -319)
+
+[node name="Cat" parent="." instance=ExtResource("8_xhimc")]
+position = Vector2(251, -222)

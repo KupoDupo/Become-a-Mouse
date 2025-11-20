@@ -11,8 +11,9 @@ bg_color = Color(9.926968e-08, 0.22163981, 0.006437873, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dovui"]
 bg_color = Color(0, 1, 0, 1)
 
-[node name="AttentionBar" type="CanvasLayer"]
+[node name="AttentionBar" type="CanvasLayer" node_paths=PackedStringArray("attention_bar")]
 script = ExtResource("1_llvbr")
+attention_bar = NodePath("Control/Background/Bar")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -64,11 +65,12 @@ offset_right = 314.0
 offset_bottom = 18.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_03b1d")
 
-[node name="Bar" type="Panel" parent="."]
+[node name="Bar" type="Panel" parent="Control/Background"]
 unique_name_in_owner = true
 z_index = 2
-offset_left = 37.0
-offset_top = 44.0
-offset_right = 37.0
-offset_bottom = 61.0
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 18.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dovui")

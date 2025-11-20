@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://fx6mo3jjhdk3"]
+[gd_scene load_steps=6 format=4 uid="uid://fx6mo3jjhdk3"]
 
 [ext_resource type="Texture2D" uid="uid://c10phcbefqxxi" path="res://kenney_roguelike-indoors/Tilesheets/roguelikeIndoor_transparent.png" id="1_hfkix"]
-[ext_resource type="PackedScene" uid="uid://bxutwg7egoxdf" path="res://attention_bar.tscn" id="2_metfq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hfkix"]
 texture = ExtResource("1_hfkix")
@@ -1077,5 +1076,3 @@ tile_set = SubResource("TileSet_metfq")
 [node name="Furniture" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAMAAoAAAAMAAkAAAAMAAsAAAAMAAoAAAAMAAwAAAAMAAsAAAALAAoAAAACAAQAAAALAAwAAAACAAQAAAANAAoAAAADAAQAAAANAAwAAAADAAQAAAAfAAYAAAAEAAUAAAAfAAoAAAAFAAUAAAAfAA4AAAAGAAUAAAA=")
 tile_set = SubResource("TileSet_6syyc")
-
-[node name="AttentionBar" parent="." instance=ExtResource("2_metfq")]
