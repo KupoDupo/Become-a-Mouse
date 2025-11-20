@@ -21,16 +21,3 @@ func _physics_process(delta):
 
 	velocity = direction * speed
 	move_and_slide()
-
-
-
-
-#
-#
-#@export var ui: attention_ui
-#var numidk = 0.0
-#numidk += 0.2
-#
-#var field = clampi(numidk, 0.0, 100.0)
-#if ui:
-	#ui.set_attention(field)
