@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-func ready():
+func _ready():
 	self.hide();
 
 func _on_retry_pressed() -> void:

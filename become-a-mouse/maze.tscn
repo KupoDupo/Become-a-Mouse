@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bm8gy0d3sikys" path="res://MouseIdle.png" id="3_ugm30"]
 [ext_resource type="Texture2D" uid="uid://cavf852dae6bu" path="res://toppng.com-white-circle-fade-png-corner-fade-to-black-transparent-png-600x600.png" id="4_1nuxl"]
 [ext_resource type="Shader" uid="uid://dfns168vl56b8" path="res://maze.gdshader" id="5_ugm30"]
-[ext_resource type="PackedScene" path="res://attention_bar.tscn" id="6_pgab2"]
+[ext_resource type="PackedScene" uid="uid://bxutwg7egoxdf" path="res://attention_bar.tscn" id="6_pgab2"]
 [ext_resource type="PackedScene" uid="uid://fx6mo3jjhdk3" path="res://house.tscn" id="7_nw8dj"]
-[ext_resource type="PackedScene" path="res://cat.tscn" id="8_xhimc"]
-[ext_resource type="Script" path="res://light_zone.gd" id="9_xhimc"]
+[ext_resource type="PackedScene" uid="uid://drd3xeeu5fpya" path="res://cat.tscn" id="8_xhimc"]
+[ext_resource type="Script" uid="uid://e4x1ax3m34h0" path="res://light_zone.gd" id="9_xhimc"]
 [ext_resource type="Script" uid="uid://v0ibddx8p771" path="res://game_over.gd" id="10_glv4d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgab2"]
@@ -388,16 +388,18 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="AttentionBar" parent="." instance=ExtResource("6_pgab2")]
 
 [node name="House" parent="." instance=ExtResource("7_nw8dj")]
 position = Vector2(-95, -319)
 
-[node name="Cat" parent="." node_paths=PackedStringArray("player", "ui") instance=ExtResource("8_xhimc")]
+[node name="Cat" parent="." node_paths=PackedStringArray("player", "ui", "GameOver") instance=ExtResource("8_xhimc")]
 position = Vector2(242, -165)
 player = NodePath("../Player/MouseMove")
 ui = NodePath("../AttentionBar")
+GameOver = NodePath("../GameOver")
 
 [node name="LightZone" type="Area2D" parent="." node_paths=PackedStringArray("darkness_node", "cat")]
 script = ExtResource("9_xhimc")
@@ -418,25 +420,27 @@ process_mode = 3
 script = ExtResource("10_glv4d")
 
 [node name="Label" type="Label" parent="GameOver"]
-offset_left = 45.0
-offset_top = -239.0
-offset_right = 538.0
-offset_bottom = -162.0
+offset_left = 213.0
+offset_top = 195.0
+offset_right = 706.0
+offset_bottom = 272.0
 theme_override_font_sizes/font_size = 25
 text = "You've been caught!"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="GameOver"]
-offset_left = 7.0
-offset_top = -281.0
-offset_right = 602.0
-offset_bottom = -1.0
+offset_left = 175.0
+offset_top = 153.0
+offset_right = 770.0
+offset_bottom = 433.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Retry" type="Button" parent="GameOver"]
-offset_left = 271.0
-offset_top = -142.0
-offset_right = 327.0
-offset_bottom = -122.0
+offset_left = 439.0
+offset_top = 292.0
+offset_right = 495.0
+offset_bottom = 323.0
 text = "Retry"
 
 [connection signal="pressed" from="GameOver/Retry" to="GameOver" method="_on_retry_pressed"]
