@@ -1,14 +1,15 @@
-[gd_scene load_steps=22 format=4 uid="uid://cu4epqrle8hdc"]
+[gd_scene load_steps=23 format=4 uid="uid://cu4epqrle8hdc"]
 
 [ext_resource type="Texture2D" uid="uid://ca2kys22xltla" path="res://Pipes.png" id="1_u11kd"]
 [ext_resource type="Script" uid="uid://c70vfmdb2uf0c" path="res://player.gd" id="2_1nuxl"]
 [ext_resource type="Texture2D" uid="uid://bm8gy0d3sikys" path="res://MouseIdle.png" id="3_ugm30"]
 [ext_resource type="Texture2D" uid="uid://cavf852dae6bu" path="res://toppng.com-white-circle-fade-png-corner-fade-to-black-transparent-png-600x600.png" id="4_1nuxl"]
 [ext_resource type="Shader" uid="uid://dfns168vl56b8" path="res://maze.gdshader" id="5_ugm30"]
-[ext_resource type="PackedScene" uid="uid://bxutwg7egoxdf" path="res://attention_bar.tscn" id="6_pgab2"]
+[ext_resource type="PackedScene" path="res://attention_bar.tscn" id="6_pgab2"]
 [ext_resource type="PackedScene" uid="uid://fx6mo3jjhdk3" path="res://house.tscn" id="7_nw8dj"]
-[ext_resource type="PackedScene" uid="uid://drd3xeeu5fpya" path="res://cat.tscn" id="8_xhimc"]
-[ext_resource type="Script" uid="uid://e4x1ax3m34h0" path="res://light_zone.gd" id="9_xhimc"]
+[ext_resource type="PackedScene" path="res://cat.tscn" id="8_xhimc"]
+[ext_resource type="Script" path="res://light_zone.gd" id="9_xhimc"]
+[ext_resource type="Script" uid="uid://v0ibddx8p771" path="res://game_over.gd" id="10_glv4d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgab2"]
 texture = ExtResource("1_u11kd")
@@ -411,3 +412,31 @@ shape = SubResource("RectangleShape2D_glv4d")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(376, 2, 376, -15, 0, -15, 0, -272, 593, -272, 593, -16, 408, -16, 408, 1, 619, 2, 632, -305, -37, -313, -27, 8, 118, 0)
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("10_glv4d")
+
+[node name="Label" type="Label" parent="GameOver"]
+offset_left = 45.0
+offset_top = -239.0
+offset_right = 538.0
+offset_bottom = -162.0
+theme_override_font_sizes/font_size = 25
+text = "You've been caught!"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="GameOver"]
+offset_left = 7.0
+offset_top = -281.0
+offset_right = 602.0
+offset_bottom = -1.0
+
+[node name="Retry" type="Button" parent="GameOver"]
+offset_left = 271.0
+offset_top = -142.0
+offset_right = 327.0
+offset_bottom = -122.0
+text = "Retry"
+
+[connection signal="pressed" from="GameOver/Retry" to="GameOver" method="_on_retry_pressed"]

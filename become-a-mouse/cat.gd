@@ -18,6 +18,7 @@ extends CharacterBody2D
 @export var facing_effect_max_range: float = 400.0
 @export var facing_effect_min_range: float = 50.0
 @export var ui: attention_ui
+@export var game_over_screen: CanvasLayer
 
 enum State { IDLE, WALK, CHASE }
 var state: State = State.IDLE
@@ -26,6 +27,7 @@ var direction: Vector2 = Vector2.ZERO
 
 var attention: float = 0.0
 var player_in_light_zone: bool = false
+var game_end: bool;
 
 func _ready() -> void:
 	randomize()
@@ -41,10 +43,18 @@ func _ready() -> void:
 	#if ui:
 		#ui.set_attention(attention)
 func _physics_process(delta: float) -> void:
+	if game_end:
+		return
+	
 	_update_attention(delta)
 
 	if ui:
 		ui.set_attention(attention)
+	
+	if attention <= 0.0:
+		_game_over_call();
+		return
+	
 	match state:
 		State.IDLE:
 			velocity = Vector2.ZERO
@@ -136,7 +146,18 @@ func _update_attention(delta: float) -> void:
 		delta_attention -= attention_loss_outside * delta
 
 	attention = clamp(attention + delta_attention, 0.0, 100.0)
-
+	
+func _game_over_call() -> void:
+	if game_end:
+		return
+	
+	game_end = true;
+	
+	if game_over_screen:
+		if game_over_screen.has_method("game_over"):
+			game_over_screen.game_over();
+		else:
+			push_warning("Game Over not found")
 
 func set_player_in_light_zone(in_zone: bool) -> void:
 	player_in_light_zone = in_zone
