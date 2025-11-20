@@ -13,7 +13,7 @@ func _process(delta):
 # Player movement
 func _physics_process(delta):
 	var direction = Vector2.ZERO
-
+		
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 

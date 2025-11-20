@@ -1,0 +1,81 @@
+[gd_scene load_steps=13 format=3 uid="uid://drd3xeeu5fpya"]
+
+[ext_resource type="Script" uid="uid://ckhpsqtvl7feo" path="res://cat.gd" id="1_52fj1"]
+[ext_resource type="Texture2D" uid="uid://kp41gopgqppm" path="res://Cat Sprite Sheet.png" id="1_hcucf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52fj1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fl1u"]
+atlas = ExtResource("1_hcucf")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w46py"]
+atlas = ExtResource("1_hcucf")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u0g4"]
+atlas = ExtResource("1_hcucf")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hdoq"]
+atlas = ExtResource("1_hcucf")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v165"]
+atlas = ExtResource("1_hcucf")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyw7o"]
+atlas = ExtResource("1_hcucf")
+region = Rect2(160, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rjga"]
+atlas = ExtResource("1_hcucf")
+region = Rect2(192, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giwe8"]
+atlas = ExtResource("1_hcucf")
+region = Rect2(224, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ma4b3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fl1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w46py")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u0g4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hdoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v165")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyw7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rjga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giwe8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[node name="Cat" type="CharacterBody2D"]
+script = ExtResource("1_52fj1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_52fj1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_ma4b3")
+animation = &"walk"
