@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://drd3xeeu5fpya"]
+[gd_scene load_steps=14 format=3 uid="uid://drd3xeeu5fpya"]
 
 [ext_resource type="Script" uid="uid://ckhpsqtvl7feo" path="res://cat.gd" id="1_52fj1"]
 [ext_resource type="Texture2D" uid="uid://kp41gopgqppm" path="res://Cat Sprite Sheet.png" id="1_hcucf"]
@@ -71,28 +71,18 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_52fj1"]
+points = PackedVector2Array(0, 0, 50, -15, 50, 15)
+
 [node name="Cat" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_52fj1")
-move_speed = null
-min_move_time = null
-max_move_time = null
-min_idle_time = null
-max_idle_time = null
-chase_speed = null
-attention_gain_in_zone = null
-attention_gain_facing_max = null
-attention_loss_outside = null
-attention_chase_threshold = null
-attention_drop_chase_threshold = null
-facing_angle_threshold_deg = null
-facing_effect_max_range = null
-facing_effect_min_range = null
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 rotation = 3.1415927
-scale = Vector2(0.8103155, -0.6871414)
+scale = Vector2(0.82785094, -0.6871414)
 shape = SubResource("CapsuleShape2D_52fj1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -105,4 +95,15 @@ rotation = 3.1415927
 scale = Vector2(0.8103155, -0.6871414)
 shape = SubResource("CapsuleShape2D_52fj1")
 
+[node name="VisionCone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionCone"]
+shape = SubResource("ConvexPolygonShape2D_52fj1")
+
+[node name="Polygon2D" type="Polygon2D" parent="VisionCone"]
+color = Color(0.13319641, 0.13319641, 0.13319638, 0.56078434)
+polygon = PackedVector2Array(0, 0, 50, -15, 50, 15)
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="VisionCone" to="." method="_on_vision_cone_body_entered"]
+[connection signal="body_exited" from="VisionCone" to="." method="_on_vision_cone_body_exited"]

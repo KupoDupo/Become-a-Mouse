@@ -276,6 +276,10 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_pgab2")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_glv4d"]
+radius = 3.9997864
+height = 9.999329
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_nw8dj"]
 atlas = ExtResource("3_ugm30")
 region = Rect2(0, 0, 32, 32)
@@ -326,10 +330,6 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_glv4d"]
-radius = 3.9997864
-height = 9.999329
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pgab2"]
 shader = ExtResource("5_ugm30")
 shader_parameter/player_pos = Vector2(0, 0)
@@ -352,6 +352,11 @@ unique_name_in_owner = true
 z_index = 20
 script = ExtResource("2_1nuxl")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(464, 305.00003)
+rotation = -1.5821598
+shape = SubResource("CapsuleShape2D_glv4d")
+
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 visible = false
 position = Vector2(464.00003, 305)
@@ -370,11 +375,6 @@ position = Vector2(463, 306)
 sprite_frames = SubResource("SpriteFrames_a8wcq")
 frame = 5
 frame_progress = 1.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(464, 305.00003)
-rotation = -1.5821598
-shape = SubResource("CapsuleShape2D_glv4d")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -398,20 +398,6 @@ position = Vector2(-95, -319)
 
 [node name="Cat" parent="." node_paths=PackedStringArray("ui", "GameOver") instance=ExtResource("8_xhimc")]
 position = Vector2(242, -165)
-move_speed = 60.0
-min_move_time = 0.8
-max_move_time = 2.0
-min_idle_time = 0.5
-max_idle_time = 2.0
-chase_speed = 120.0
-attention_gain_in_zone = 10.0
-attention_gain_facing_max = 20.0
-attention_loss_outside = 5.0
-attention_chase_threshold = 100.0
-attention_drop_chase_threshold = 20.0
-facing_angle_threshold_deg = 45.0
-facing_effect_max_range = 400.0
-facing_effect_min_range = 50.0
 ui = NodePath("../AttentionBar")
 GameOver = NodePath("../GameOver")
 
