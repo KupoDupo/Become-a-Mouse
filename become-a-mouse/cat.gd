@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var min_idle_time: float = 0.5
 @export var max_idle_time: float = 2.0
 
-@export var player: Node2D                    # assign Player here OR put Player in "player" group
+@onready var player: Node2D = %Player        # assign Player here OR put Player in "player" group
 @export var chase_speed: float = 120.0
 
 @export var attention_gain_in_zone: float = 10.0
@@ -34,7 +34,7 @@ func _ready() -> void:
 
 	# If you forgot to assign player in Inspector, try to find it via group
 	if player == null:
-		player = get_tree().get_first_node_in_group("player") as Node2D
+		player = get_tree().get_node("Player") as Node2D
 		if player == null:
 			push_error("Cat: No player assigned and no node in group 'player' — chasing will be broken.")
 
@@ -51,9 +51,6 @@ func _physics_process(delta: float) -> void:
 	if ui:
 		ui.set_attention(attention)
 	
-	if attention >= 100.0:
-		_game_over_call();
-		return
 	
 	match state:
 		State.IDLE:
@@ -161,3 +158,11 @@ func _game_over_call() -> void:
 
 func set_player_in_light_zone(in_zone: bool) -> void:
 	player_in_light_zone = in_zone
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	print("Hitbox detected: ", body)
+	print("Assigned player var:", player)
+	if body == player and not game_has_ended:
+		_game_over_call()
+	

@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://ckhpsqtvl7feo" path="res://cat.gd" id="1_52fj1"]
 [ext_resource type="Texture2D" uid="uid://kp41gopgqppm" path="res://Cat Sprite Sheet.png" id="1_hcucf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_52fj1"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52fj1"]
+radius = 8.638611
+height = 20.374264
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fl1u"]
 atlas = ExtResource("1_hcucf")
@@ -71,11 +73,36 @@ animations = [{
 
 [node name="Cat" type="CharacterBody2D"]
 script = ExtResource("1_52fj1")
+move_speed = null
+min_move_time = null
+max_move_time = null
+min_idle_time = null
+max_idle_time = null
+chase_speed = null
+attention_gain_in_zone = null
+attention_gain_facing_max = null
+attention_loss_outside = null
+attention_chase_threshold = null
+attention_drop_chase_threshold = null
+facing_angle_threshold_deg = null
+facing_effect_max_range = null
+facing_effect_min_range = null
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_52fj1")
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 3.1415927
+scale = Vector2(0.8103155, -0.6871414)
+shape = SubResource("CapsuleShape2D_52fj1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_ma4b3")
 animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 3.1415927
+scale = Vector2(0.8103155, -0.6871414)
+shape = SubResource("CapsuleShape2D_52fj1")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
