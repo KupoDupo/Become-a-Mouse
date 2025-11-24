@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed := 150.0
 @onready var darkness_mat = get_tree().get_root().get_node("Maze/CanvasLayer/ColorRect").material
 @onready var camera = get_viewport().get_camera_2d()
+@onready var anim: AnimatedSprite2D = $MouseMove
 
 # Find screen center to update shader and move it w/player for vision blinding
 func _process(delta):
@@ -20,4 +21,22 @@ func _physics_process(delta):
 	direction = direction.normalized()
 
 	velocity = direction * speed
+	_update_animation()
 	move_and_slide()
+
+
+func _update_animation() -> void:
+	if anim == null:
+		return
+	if velocity.length() == 0.0:
+		anim.stop()
+		anim.frame = 0
+		return
+	if velocity.x != 0.0:
+		anim.play("walk_side")
+		anim.flip_h = velocity.x < 0.0
+	else:
+		if velocity.y > 0.0:
+			anim.play("walk_down")
+		else:
+			anim.play("walk_up")

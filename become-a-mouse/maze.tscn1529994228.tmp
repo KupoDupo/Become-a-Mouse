@@ -449,7 +449,7 @@ tile_set = SubResource("TileSet_mjrf4")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
-z_index = 999
+z_index = 20
 script = ExtResource("2_1nuxl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -471,11 +471,9 @@ position = Vector2(464, 305)
 zoom = Vector2(3, 3)
 
 [node name="MouseMove" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(464.015, 303.505)
-scale = Vector2(0.405, 0.405)
+position = Vector2(463, 306)
 sprite_frames = SubResource("SpriteFrames_a8wcq")
 animation = &"walk_up"
-speed_scale = 2.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -497,9 +495,8 @@ metadata/_edit_use_anchors_ = true
 [node name="House" parent="." instance=ExtResource("7_nw8dj")]
 position = Vector2(-95, -319)
 
-[node name="Cat" parent="." node_paths=PackedStringArray("player", "ui", "GameOver") instance=ExtResource("8_xhimc")]
+[node name="Cat" parent="." node_paths=PackedStringArray("ui", "GameOver") instance=ExtResource("8_xhimc")]
 position = Vector2(242, -165)
-player = NodePath("../Player/MouseMove")
 ui = NodePath("../AttentionBar")
 GameOver = NodePath("../GameOver")
 
