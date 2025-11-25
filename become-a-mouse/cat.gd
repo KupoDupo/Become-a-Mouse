@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var max_idle_time: float = 2.0
 
 @export var player: Node2D
-@export var chase_speed: float = 120.0
+@export var chase_speed: float = 135.0
 
 @export var attention_gain_in_zone: float = 10.0
 @export var attention_gain_facing_max: float = 20.0
@@ -20,6 +20,7 @@ extends CharacterBody2D
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cat_sound_player: AudioStreamPlayer = $CatSoundPlayer
+@onready var vision_cone = $VisionCone
 
 enum State { IDLE, WALK, CHASE }
 var state: State = State.IDLE
@@ -77,6 +78,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				state_time_left -= delta
 				velocity = direction * move_speed
+				if velocity.length() > 0:
+					vision_cone.rotation = velocity.angle()
 				move_and_slide()
 
 				if state_time_left <= 0.0:
@@ -105,7 +108,6 @@ func _enter_walk_state() -> void:
 
 
 func _chase_player(delta: float) -> void:
-	print(player, "IS HERE")
 
 	if player == null or not player_in_light_zone:
 		_enter_idle_state()
@@ -113,6 +115,8 @@ func _chase_player(delta: float) -> void:
 
 	var to_player: Vector2 = (player.global_position - global_position).normalized()
 	velocity = to_player * chase_speed
+	if velocity.length() > 0:
+		vision_cone.rotation = velocity.angle()
 	move_and_slide()
 
 	if attention <= attention_drop_chase_threshold and not player_in_vision:
