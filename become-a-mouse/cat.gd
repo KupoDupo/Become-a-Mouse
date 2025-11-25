@@ -19,6 +19,7 @@ extends CharacterBody2D
 @export var GameOver: CanvasLayer
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var cat_sound_player: AudioStreamPlayer = $CatSoundPlayer
 
 enum State { IDLE, WALK, CHASE }
 var state: State = State.IDLE
@@ -63,12 +64,16 @@ func _physics_process(delta: float) -> void:
 
 			if _should_start_chase():
 				state = State.CHASE
+				if cat_sound_player and not cat_sound_player.playing:
+					cat_sound_player.play()
 			elif state_time_left <= 0.0:
 				_enter_walk_state()
 
 		State.WALK:
 			if _should_start_chase():
 				state = State.CHASE
+				if cat_sound_player and not cat_sound_player.playing:
+					cat_sound_player.play()
 			else:
 				state_time_left -= delta
 				velocity = direction * move_speed
@@ -87,6 +92,9 @@ func _enter_idle_state() -> void:
 	state = State.IDLE
 	state_time_left = randf_range(min_idle_time, max_idle_time)
 	direction = Vector2.ZERO
+	
+	if cat_sound_player and cat_sound_player.playing:
+		cat_sound_player.stop()
 
 
 func _enter_walk_state() -> void:

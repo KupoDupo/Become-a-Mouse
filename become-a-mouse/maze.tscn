@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://cu4epqrle8hdc"]
+[gd_scene load_steps=43 format=4 uid="uid://cu4epqrle8hdc"]
 
 [ext_resource type="Texture2D" uid="uid://ca2kys22xltla" path="res://Pipes.png" id="1_u11kd"]
 [ext_resource type="Script" uid="uid://c70vfmdb2uf0c" path="res://player.gd" id="2_1nuxl"]
@@ -8,12 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://c20y07o4losvr" path="res://MouseSpritesheet.png" id="5_dnyu5"]
 [ext_resource type="Shader" uid="uid://dfns168vl56b8" path="res://maze.gdshader" id="5_ugm30"]
 [ext_resource type="Texture2D" uid="uid://b4pves5mnxdob" path="res://key.png" id="6_ifb1s"]
-[ext_resource type="PackedScene" path="res://attention_bar.tscn" id="6_pgab2"]
-[ext_resource type="PackedScene" path="res://house.tscn" id="7_nw8dj"]
-[ext_resource type="PackedScene" path="res://cat.tscn" id="8_xhimc"]
+[ext_resource type="PackedScene" uid="uid://bxutwg7egoxdf" path="res://attention_bar.tscn" id="6_pgab2"]
+[ext_resource type="PackedScene" uid="uid://fx6mo3jjhdk3" path="res://house.tscn" id="7_nw8dj"]
+[ext_resource type="PackedScene" uid="uid://drd3xeeu5fpya" path="res://cat.tscn" id="8_xhimc"]
+[ext_resource type="AudioStream" uid="uid://d4i5103bwqowt" path="res://kenney_roguelike-indoors/SweetSounds_SFX/WAV/Jump.wav" id="9_eorol"]
 [ext_resource type="Script" uid="uid://e4x1ax3m34h0" path="res://light_zone.gd" id="9_xhimc"]
 [ext_resource type="Script" uid="uid://v0ibddx8p771" path="res://game_over.gd" id="10_glv4d"]
 [ext_resource type="PackedScene" uid="uid://d4lqdv14pr8d8" path="res://key.tscn" id="13_cwyby"]
+[ext_resource type="AudioStream" uid="uid://35qy82cf86cx" path="res://kenney_roguelike-indoors/SweetSounds_SFX/WAV/Click.wav" id="14_boen6"]
+[ext_resource type="AudioStream" uid="uid://bfwtu86qn205m" path="res://kenney_roguelike-indoors/SweetSounds_SFX/WAV/Cat_Meow.wav" id="15_k6mec"]
 [ext_resource type="PackedScene" uid="uid://cg7wrnjvdt7wh" path="res://cheese_zone.tscn" id="15_uywvj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgab2"]
@@ -502,6 +505,11 @@ rotation = -2.2454906
 scale = Vector2(0.4129622, 0.4492787)
 texture = ExtResource("6_ifb1s")
 
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("9_eorol")
+volume_db = -15.854
+pitch_scale = 4.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
@@ -525,17 +533,30 @@ position = Vector2(-95, -319)
 [node name="Key3" parent="House" instance=ExtResource("13_cwyby")]
 position = Vector2(316, 231)
 
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="House/Key3"]
+stream = ExtResource("14_boen6")
+
 [node name="Key1" parent="House" instance=ExtResource("13_cwyby")]
 position = Vector2(455, 272)
 
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="House/Key1"]
+stream = ExtResource("14_boen6")
+
 [node name="Key2" parent="House" instance=ExtResource("13_cwyby")]
 position = Vector2(459, 160)
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="House/Key2"]
+stream = ExtResource("14_boen6")
 
 [node name="Cat" parent="." node_paths=PackedStringArray("player", "ui", "GameOver") instance=ExtResource("8_xhimc")]
 position = Vector2(242, -165)
 player = NodePath("../Player/MouseMove")
 ui = NodePath("../AttentionBar")
 GameOver = NodePath("../GameOver")
+
+[node name="CatSoundPlayer" type="AudioStreamPlayer" parent="Cat"]
+stream = ExtResource("15_k6mec")
+volume_db = -5.073
 
 [node name="LightZone" type="Area2D" parent="." node_paths=PackedStringArray("darkness_node", "cat")]
 script = ExtResource("9_xhimc")
