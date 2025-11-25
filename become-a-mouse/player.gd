@@ -8,6 +8,7 @@ var held_key_id: String = "" # empty = not holding anything
 @onready var anim: AnimatedSprite2D = $MouseMove
 
 @onready var held_item: Sprite2D = $HeldItem
+@onready var audio_player: AudioStreamPlayer = $AudioPlayer
 
 func _ready() -> void:
 	held_item.hide()
@@ -38,7 +39,12 @@ func _update_animation() -> void:
 	if velocity.length() == 0.0:
 		anim.stop()
 		anim.frame = 0
+		if audio_player.playing:
+			audio_player.stop()
 		return
+	
+	if not audio_player.playing:
+		audio_player.play()
 	if velocity.x != 0.0:
 		anim.play("walk_side")
 		anim.flip_h = velocity.x < 0.0
