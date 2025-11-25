@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxutwg7egoxdf"]
+
+[ext_resource type="Script" uid="uid://bii7ri2qqurxv" path="res://attention_bar.gd" id="1_llvbr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llvbr"]
+bg_color = Color(0.19434926, 0.19434929, 0.19434917, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03b1d"]
+bg_color = Color(9.926968e-08, 0.22163981, 0.006437873, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dovui"]
+bg_color = Color(0, 1, 0, 1)
+
+[node name="AttentionBar" type="CanvasLayer" node_paths=PackedStringArray("attention_bar")]
+script = ExtResource("1_llvbr")
+attention_bar = NodePath("Control/Background/Bar")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = -524
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Background" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 43.0
+offset_right = 351.0
+offset_bottom = 62.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_llvbr")
+
+[node name="Label" type="Label" parent="Control/Background"]
+z_index = 3
+layout_mode = 0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 95.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 14
+text = "Attention"
+
+[node name="Bar2" type="Panel" parent="Control/Background"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 314.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_03b1d")
+
+[node name="Bar" type="Panel" parent="Control/Background"]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dovui")
