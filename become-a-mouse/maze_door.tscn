@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dde8jxm3y7nd8"]
+
+[ext_resource type="Script" uid="uid://1r30y5vqsjsi" path="res://maze_door.gd" id="1_6ad16"]
+[ext_resource type="Texture2D" uid="uid://d20ayrjonc7av" path="res://MazeLock.png" id="2_44a77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44a77"]
+size = Vector2(20, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ih02v"]
+
+[node name="MazeDoor" type="Node2D"]
+script = ExtResource("1_6ad16")
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+scale = Vector2(0.5126244, 0.6293104)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker"]
+visible = false
+shape = SubResource("RectangleShape2D_44a77")
+
+[node name="ColorRect" type="ColorRect" parent="Blocker"]
+offset_left = -10.0
+offset_top = -24.0
+offset_right = 30.0
+offset_bottom = 16.0
+scale = Vector2(0.49985185, 1.1990439)
+color = Color(0.14397839, 0.021150587, 0.029833756, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="MazeLock" type="Sprite2D" parent="Blocker"]
+position = Vector2(0, -2.3954668)
+scale = Vector2(1.0157658, 0.7209265)
+texture = ExtResource("2_44a77")
+
+[node name="Trigger" type="Area2D" parent="."]
+scale = Vector2(0.5126244, 0.6293104)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
+scale = Vector2(1.5233768, 2.9871113)
+shape = SubResource("RectangleShape2D_ih02v")
