@@ -473,7 +473,7 @@ position = Vector2(285, 465)
 [node name="Player" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
 z_index = 999
-position = Vector2(-24, -257)
+position = Vector2(-8, 0)
 script = ExtResource("2_1nuxl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
