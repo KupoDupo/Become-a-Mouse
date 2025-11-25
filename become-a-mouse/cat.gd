@@ -20,6 +20,7 @@ extends CharacterBody2D
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var cat_sound_player: AudioStreamPlayer = $CatSoundPlayer
+@onready var vision_cone = $VisionCone
 
 enum State { IDLE, WALK, CHASE }
 var state: State = State.IDLE
@@ -77,6 +78,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				state_time_left -= delta
 				velocity = direction * move_speed
+				if velocity.length() > 0:
+					vision_cone.rotation = velocity.angle()
 				move_and_slide()
 
 				if state_time_left <= 0.0:
@@ -112,6 +115,8 @@ func _chase_player(delta: float) -> void:
 
 	var to_player: Vector2 = (player.global_position - global_position).normalized()
 	velocity = to_player * chase_speed
+	if velocity.length() > 0:
+		vision_cone.rotation = velocity.angle()
 	move_and_slide()
 
 	if attention <= attention_drop_chase_threshold and not player_in_vision:
