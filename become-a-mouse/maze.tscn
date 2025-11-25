@@ -1,16 +1,20 @@
-[gd_scene load_steps=36 format=4 uid="uid://cu4epqrle8hdc"]
+[gd_scene load_steps=40 format=4 uid="uid://cu4epqrle8hdc"]
 
 [ext_resource type="Texture2D" uid="uid://ca2kys22xltla" path="res://Pipes.png" id="1_u11kd"]
 [ext_resource type="Script" uid="uid://c70vfmdb2uf0c" path="res://player.gd" id="2_1nuxl"]
+[ext_resource type="PackedScene" uid="uid://dde8jxm3y7nd8" path="res://maze_door.tscn" id="2_a8wcq"]
 [ext_resource type="Texture2D" uid="uid://bm8gy0d3sikys" path="res://MouseIdle.png" id="3_ugm30"]
 [ext_resource type="Texture2D" uid="uid://cavf852dae6bu" path="res://toppng.com-white-circle-fade-png-corner-fade-to-black-transparent-png-600x600.png" id="4_1nuxl"]
 [ext_resource type="Texture2D" uid="uid://c20y07o4losvr" path="res://MouseSpritesheet.png" id="5_dnyu5"]
 [ext_resource type="Shader" uid="uid://dfns168vl56b8" path="res://maze.gdshader" id="5_ugm30"]
-[ext_resource type="PackedScene" uid="uid://bxutwg7egoxdf" path="res://attention_bar.tscn" id="6_pgab2"]
-[ext_resource type="PackedScene" uid="uid://fx6mo3jjhdk3" path="res://house.tscn" id="7_nw8dj"]
-[ext_resource type="PackedScene" uid="uid://drd3xeeu5fpya" path="res://cat.tscn" id="8_xhimc"]
+[ext_resource type="Texture2D" uid="uid://b4pves5mnxdob" path="res://key.png" id="6_ifb1s"]
+[ext_resource type="PackedScene" path="res://attention_bar.tscn" id="6_pgab2"]
+[ext_resource type="PackedScene" path="res://house.tscn" id="7_nw8dj"]
+[ext_resource type="PackedScene" path="res://cat.tscn" id="8_xhimc"]
 [ext_resource type="Script" uid="uid://e4x1ax3m34h0" path="res://light_zone.gd" id="9_xhimc"]
 [ext_resource type="Script" uid="uid://v0ibddx8p771" path="res://game_over.gd" id="10_glv4d"]
+[ext_resource type="PackedScene" uid="uid://d4lqdv14pr8d8" path="res://key.tscn" id="13_cwyby"]
+[ext_resource type="PackedScene" uid="uid://cg7wrnjvdt7wh" path="res://cheese_zone.tscn" id="15_uywvj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgab2"]
 texture = ExtResource("1_u11kd")
@@ -447,9 +451,23 @@ position = Vector2(-10, 0)
 tile_map_data = PackedByteArray("AAAAABAAAAAJAAIAAAAAAAYAAAAJAAIAAAABABAAAAABAAAAAAACABAAAAABAAAAAAADABAAAAAFAAAAAAADABEAAAAAAAAAAAADABIAAAADAAAAAAAEABIAAAABAAAAAAAFABIAAAABAAAAAAAOAAkAAAAKAAAAAAAOAAoAAAAAAAAAAAAOAAsAAAAAAAAAAAAOAAwAAAAAAAAAAAAOAA0AAAAKAAAAAAAPAA0AAAABAAAAAAAQAA0AAAABAAAAAAARAA0AAAALAAAAAAASAA0AAAAHAAAAAAARAAwAAAAOAAAAAAAQAAwAAAABAAAAAAAPAAwAAAADAAAAAAAPAAsAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAkAAAAFAAAAAAARAAsAAAAOAAAAAAAQAAsAAAADAAAAAAAQAAoAAAAGAAAAAAARAAoAAAAAAAAAAAARAAkAAAAAAAAAAAARAAgAAAAKAAAAAAASAAgAAAAHAAAAAAAMAAAAAAAGAAIAAAAMAAEAAAADAAAAAAANAAEAAAABAAAAAAAOAAEAAAABAAAAAAAPAAEAAAAFAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAAKAAAAAAAPAAQAAAAAAAAAAAAPAAUAAAAOAAAAAAAPAAYAAAADAAAAAAAQAAYAAAAOAAAAAAAQAAMAAAACAAAAAAAQAAIAAAAAAAAAAAAQAAEAAAAAAAAAAAAQAAAAAAAGAAAAAAARAAcAAAAAAAAAAAARAAYAAAAAAAAAAAAQAAUAAAAEAAAAAAARAAUAAAAFAAAAAAAQAAcAAAAOAAAAAAAQAAgAAAADAAAAAAAPAAcAAAABAAAAAAAOAAcAAAABAAAAAAAOAAgAAAAGAAAAAAABAAYAAAABAAAAAAACAAYAAAABAAAAAAADAAYAAAABAAAAAAAEAAYAAAAKAAAAAAAEAAUAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAEAAAAAAAFAAIAAAABAAAAAAAGAAIAAAABAAAAAAAHAAIAAAAFAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAKAAAAAAAIAAkAAAABAAAAAAAJAAkAAAABAAAAAAAKAAkAAAACAAAAAAAKAAgAAAAOAAAAAAAKAAcAAAAEAAAAAAALAAcAAAABAAAAAAANAAcAAAAJAAAAAAAMAAcAAAAFAAAAAAAMAAgAAAAAAAAAAAAMAAkAAAADAAAAAAANAAkAAAABAAAAAAAGABIAAAANAAAAAAAGABMAAAACAAAAAAAFABMAAAABAAAAAAAEABMAAAABAAAAAAADABMAAAABAAAAAAACABMAAAABAAAAAAABABMAAAADAAAAAAABABIAAAAGAAAAAAAHABIAAAABAAAAAAAIABIAAAABAAAAAAAJABIAAAABAAAAAAAKABIAAAAFAAAAAAAKABMAAAADAAAAAAALABMAAAABAAAAAAAMABMAAAABAAAAAAANABMAAAABAAAAAAAOABMAAAALAAAAAAAOABIAAAAAAAAAAAAOABEAAAAAAAAAAAAOABAAAAAFAAAAAAANABAAAAABAAAAAAAMABAAAAADAAAAAAAMAA8AAAAAAAAAAAAMAA4AAAAEAAAAAAANAA4AAAABAAAAAAAOAA4AAAACAAAAAAAPABMAAAABAAAAAAAQABMAAAACAAAAAAAQABIAAAAAAAAAAAAQABEAAAAAAAAAAAAQABAAAAAAAAAAAAAQAA8AAAANAAAAAAAPAA8AAAABAAAAAAAOAA8AAAAJAAAAAAARAA8AAAABAAAAAAASAA8AAAAFAAAAAAASABAAAAAAAAAAAAASABEAAAAAAAAAAAASABIAAAAIAAAAAAANAA0AAAABAAAAAAAMAA0AAAABAAAAAAALAA0AAAABAAAAAAAKAA0AAAAMAAAAAAAKAAwAAAAEAAAAAAALAAwAAAABAAAAAAAMAAwAAAACAAAAAAAMAAsAAAAGAAAAAAAKAA4AAAAAAAAAAAAKAA8AAAAAAAAAAAAKABAAAAALAAAAAAALABAAAAAFAAAAAAALABEAAAAAAAAAAAALABIAAAAIAAAAAAAJABAAAAABAAAAAAAIABAAAAABAAAAAAAHABAAAAAMAAAAAAAHABEAAAACAAAAAAAGABEAAAABAAAAAAAFABEAAAADAAAAAAAFABAAAAAAAAAAAAAFAA8AAAAFAAAAAAAEAA8AAAABAAAAAAADAA8AAAADAAAAAAADAA4AAAAOAAAAAAACAA4AAAABAAAAAAABAA4AAAABAAAAAAAAAA4AAAAJAAAAAAADAA0AAAANAAAAAAAHAA8AAAAAAAAAAAAHAA4AAAAAAAAAAAAHAA0AAAANAAAAAAAIAA0AAAAFAAAAAAAIAA4AAAADAAAAAAAJAA4AAAAHAAAAAAACAA0AAAABAAAAAAABAA0AAAADAAAAAAABAAwAAAAAAAAAAAABAAsAAAAAAAAAAAABAAoAAAAMAAAAAAABAAkAAAAAAAAAAAABAAgAAAAFAAAAAAAAAAgAAAAJAAAAAAACAAoAAAABAAAAAAADAAoAAAAKAAAAAAADAAkAAAAAAAAAAAADAAgAAAAAAAAAAAADAAcAAAAEAAAAAAAEAAcAAAACAAAAAAAGAAkAAAAJAAAAAAAHAAoAAAADAAAAAAAIAAoAAAAFAAAAAAAIAAsAAAAAAAAAAAAIAAwAAAAIAAAAAAAGAA0AAAABAAAAAAAEAA0AAAAFAAAAAAAEAA4AAAADAAAAAAAFAA4AAAABAAAAAAAGAA4AAAAHAAAAAAAFAA0AAAADAAAAAAAFAAwAAAAAAAAAAAAFAAsAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAcAAAAGAAAAAAAFAAYAAAACAAAAAAAFAAUAAAAAAAAAAAAFAAQAAAAGAAAAAAAEAAoAAAAHAAAAAAADAAsAAAAAAAAAAAADAAwAAAAIAAAAAAAJAAgAAAADAAAAAAAJAAcAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAUAAAAKAAAAAAAIAAUAAAADAAAAAAAIAAQAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAEAAAAFAAAAAAAHAAEAAAALAAAAAAAGAAEAAAABAAAAAAAFAAEAAAABAAAAAAAEAAEAAAABAAAAAAADAAEAAAANAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAACAAAAAAACAAUAAAABAAAAAAAOAAUAAAABAAAAAAANAAUAAAABAAAAAAAMAAUAAAAEAAAAAAAMAAYAAAAIAAAAAAAKAAUAAAACAAAAAAAKAAQAAAAEAAAAAAALAAQAAAAFAAAAAAALAAUAAAAIAAAAAAAJAAQAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAIAAAAEAAAAAAALAAIAAAABAAAAAAAKAAIAAAABAAAAAAAMAAIAAAAFAAAAAAAMAAMAAAADAAAAAAANAAMAAAAHAAAAAAAOAAMAAAAJAAAAAAAHAAAAAAAFAAAAAAAGAAAAAAABAAAAAAAFAAAAAAABAAAAAAAEAAAAAAAJAAAAAAACAAEAAAABAAAAAAABAAEAAAABAAAAAAAAAAEAAAAEAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAIAAAAAAABAAUAAAADAAAAAAABAAQAAAAAAAAAAAABAAMAAAAEAAAAAAACAAMAAAAHAAAAAAA=")
 tile_set = SubResource("TileSet_mjrf4")
 
+[node name="MazeDoor" parent="." instance=ExtResource("2_a8wcq")]
+position = Vector2(412, 304)
+scale = Vector2(1.0014726, 1)
+
+[node name="MazeDoor2" parent="." instance=ExtResource("2_a8wcq")]
+position = Vector2(429, 432)
+
+[node name="MazeDoor3" parent="." instance=ExtResource("2_a8wcq")]
+position = Vector2(368, 624)
+
+[node name="CheeseZone" parent="." instance=ExtResource("15_uywvj")]
+position = Vector2(285, 465)
+
 [node name="Player" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
 z_index = 999
+position = Vector2(-8, 0)
 script = ExtResource("2_1nuxl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -477,6 +495,13 @@ sprite_frames = SubResource("SpriteFrames_a8wcq")
 animation = &"walk_up"
 speed_scale = 2.5
 
+[node name="HeldItem" type="Sprite2D" parent="Player"]
+visible = false
+position = Vector2(464, 306.00003)
+rotation = -2.2454906
+scale = Vector2(0.4129622, 0.4492787)
+texture = ExtResource("6_ifb1s")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
@@ -497,6 +522,15 @@ metadata/_edit_use_anchors_ = true
 [node name="House" parent="." instance=ExtResource("7_nw8dj")]
 position = Vector2(-95, -319)
 
+[node name="Key3" parent="House" instance=ExtResource("13_cwyby")]
+position = Vector2(316, 231)
+
+[node name="Key1" parent="House" instance=ExtResource("13_cwyby")]
+position = Vector2(455, 272)
+
+[node name="Key2" parent="House" instance=ExtResource("13_cwyby")]
+position = Vector2(459, 160)
+
 [node name="Cat" parent="." node_paths=PackedStringArray("player", "ui", "GameOver") instance=ExtResource("8_xhimc")]
 position = Vector2(242, -165)
 player = NodePath("../Player/MouseMove")
@@ -513,6 +547,7 @@ position = Vector2(303.5, -142)
 shape = SubResource("RectangleShape2D_glv4d")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1, 12)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(376, 2, 376, -15, 0, -15, 0, -272, 593, -272, 593, -16, 408, -16, 408, 1, 619, 2, 632, -305, -37, -313, -27, 8, 118, 0)
@@ -523,27 +558,27 @@ visible = false
 script = ExtResource("10_glv4d")
 
 [node name="Label" type="Label" parent="GameOver"]
-offset_left = 213.0
-offset_top = 195.0
-offset_right = 706.0
-offset_bottom = 272.0
+offset_left = 353.0
+offset_top = 191.0
+offset_right = 846.0
+offset_bottom = 268.0
 theme_override_font_sizes/font_size = 25
-text = "You've been caught!"
+text = "Text"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="GameOver"]
-offset_left = 175.0
+offset_left = 302.0
 offset_top = 153.0
-offset_right = 770.0
+offset_right = 897.0
 offset_bottom = 433.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Retry" type="Button" parent="GameOver"]
-offset_left = 439.0
-offset_top = 292.0
-offset_right = 495.0
-offset_bottom = 323.0
+offset_left = 574.0
+offset_top = 323.0
+offset_right = 630.0
+offset_bottom = 354.0
 text = "Retry"
 
 [connection signal="pressed" from="GameOver/Retry" to="GameOver" method="_on_retry_pressed"]
