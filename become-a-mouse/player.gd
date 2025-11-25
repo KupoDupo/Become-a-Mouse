@@ -9,7 +9,6 @@ var held_key_id: String = "" # empty = not holding anything
 @onready var darkness_mat = get_tree().get_root().get_node("Maze/CanvasLayer/ColorRect").material
 @onready var camera = get_viewport().get_camera_2d()
 @onready var anim: AnimatedSprite2D = $MouseMove
-
 @onready var held_item: Sprite2D = $HeldItem
 @onready var audio_player: AudioStreamPlayer = $AudioPlayer
 
