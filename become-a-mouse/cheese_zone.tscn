@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg7wrnjvdt7wh"]
+
+[ext_resource type="Script" uid="uid://doamdruqfi7hr" path="res://cheese_zone.gd" id="1_svnsh"]
+[ext_resource type="Texture2D" uid="uid://cs5bfqo5uw7ei" path="res://Cheese.png" id="2_x0occ"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4w5x"]
+size = Vector2(18, 17)
+
+[node name="CheeseZone" type="Area2D"]
+script = ExtResource("1_svnsh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_o4w5x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_x0occ")
