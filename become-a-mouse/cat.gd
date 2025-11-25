@@ -105,7 +105,6 @@ func _enter_walk_state() -> void:
 
 
 func _chase_player(delta: float) -> void:
-	print(player, "IS HERE")
 
 	if player == null or not player_in_light_zone:
 		_enter_idle_state()
