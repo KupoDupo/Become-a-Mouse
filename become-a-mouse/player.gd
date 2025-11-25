@@ -2,7 +2,10 @@ extends CharacterBody2D
 
 var held_key_id: String = "" # empty = not holding anything
 
-@export var speed := 150.0
+@export var speed_in_pipes := 120.0
+@export var speed_in_house := 150.0
+@export var house_acceleration := 600.0 # speed up
+@export var house_friction := 300.0 # slow down 
 @onready var darkness_mat = get_tree().get_root().get_node("Maze/CanvasLayer/ColorRect").material
 @onready var camera = get_viewport().get_camera_2d()
 @onready var anim: AnimatedSprite2D = $MouseMove
@@ -10,7 +13,10 @@ var held_key_id: String = "" # empty = not holding anything
 @onready var held_item: Sprite2D = $HeldItem
 @onready var audio_player: AudioStreamPlayer = $AudioPlayer
 
+@onready var in_house: bool = false;
+
 func _ready() -> void:
+	print(in_house)
 	held_item.hide()
 
 # Find screen center to update shader and move it w/player for vision blinding
@@ -26,9 +32,20 @@ func _physics_process(delta):
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 
-	direction = direction.normalized()
+	if in_house:
+		direction = direction.normalized()
+		
+		if direction.length() > 0:
+		# Apply acceleration towards target speed
+			velocity = velocity.move_toward(direction * speed_in_house, house_acceleration * delta)
+		else:
+			# Apply friction when no input
+			velocity = velocity.move_toward(Vector2.ZERO, house_friction * delta)
 
-	velocity = direction * speed
+	else:
+		direction = direction.normalized()
+		velocity = direction * speed_in_pipes
+		
 	_update_animation()
 	move_and_slide()
 
@@ -69,3 +86,15 @@ func has_key_for(door_key_id: String) -> bool:
 func consume_key() -> void:
 	held_key_id = ""
 	held_item.hide()
+
+
+func _on_house_area_body_entered(body: Node2D) -> void:
+	if body == self:
+		in_house = true
+		print(in_house)
+
+
+func _on_house_area_body_exited(body: Node2D) -> void:
+	if body == self:
+		in_house = false
+		print(in_house)
