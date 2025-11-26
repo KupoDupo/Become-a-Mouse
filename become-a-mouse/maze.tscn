@@ -572,7 +572,7 @@ shape = SubResource("RectangleShape2D_glv4d")
 position = Vector2(1, 12)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(376, 2, 376, -15, 0, -15, 0, -272, 593, -272, 593, -16, 408, -16, 408, 1, 619, 2, 632, -305, -37, -313, -27, 8, 118, 0)
+polygon = PackedVector2Array(374, 2, 374, -11, 0, -11, 0, -283, 592, -283, 592, -12, 404, -12, 404, 4, 619, 2, 632, -305, -37, -313, -27, 8, 118, 0)
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 process_mode = 3
