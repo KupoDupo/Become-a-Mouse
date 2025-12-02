@@ -469,6 +469,7 @@ unique_name_in_owner = true
 z_index = 999
 position = Vector2(-8, 0)
 script = ExtResource("2_1nuxl")
+speed = 151.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(464, 305.00003)
