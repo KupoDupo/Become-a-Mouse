@@ -531,7 +531,7 @@ position = Vector2(-219, 475)
 stream = ExtResource("14_boen6")
 
 [node name="Key1" parent="House" instance=ExtResource("13_cwyby")]
-position = Vector2(-733, -186)
+position = Vector2(-726, -170)
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="House/Key1"]
 stream = ExtResource("14_boen6")
