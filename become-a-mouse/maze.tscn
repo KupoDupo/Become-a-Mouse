@@ -445,7 +445,7 @@ shader_parameter/screen_size = Vector2(0, 0)
 shader_parameter/darkness_strength = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glv4d"]
-size = Vector2(627, 286)
+size = Vector2(682, 445)
 
 [node name="Maze" type="Node2D"]
 
@@ -528,7 +528,7 @@ metadata/_edit_use_anchors_ = true
 [node name="AttentionBar" parent="." instance=ExtResource("6_pgab2")]
 
 [node name="House" parent="." instance=ExtResource("7_nw8dj")]
-position = Vector2(-95, -319)
+position = Vector2(685, 22)
 
 [node name="Key3" parent="House" instance=ExtResource("13_cwyby")]
 position = Vector2(316, 231)
@@ -564,14 +564,8 @@ darkness_node = NodePath("../CanvasLayer/ColorRect")
 cat = NodePath("../Cat")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightZone"]
-position = Vector2(303.5, -142)
+position = Vector2(327, -221.5)
 shape = SubResource("RectangleShape2D_glv4d")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(1, 12)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(376, 2, 376, -15, 0, -15, 0, -272, 593, -272, 593, -16, 408, -16, 408, 1, 619, 2, 632, -305, -37, -313, -27, 8, 118, 0)
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 process_mode = 3
