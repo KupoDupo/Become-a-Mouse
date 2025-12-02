@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://cu4epqrle8hdc"]
+[gd_scene load_steps=42 format=4 uid="uid://cu4epqrle8hdc"]
 
 [ext_resource type="Texture2D" uid="uid://ca2kys22xltla" path="res://Pipes.png" id="1_u11kd"]
 [ext_resource type="Script" uid="uid://c70vfmdb2uf0c" path="res://player.gd" id="2_1nuxl"]
@@ -444,9 +444,6 @@ shader_parameter/radius = 150.0
 shader_parameter/screen_size = Vector2(0, 0)
 shader_parameter/darkness_strength = 1.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_glv4d"]
-size = Vector2(682, 445)
-
 [node name="Maze" type="Node2D"]
 
 [node name="Pipes" type="TileMapLayer" parent="."]
@@ -531,19 +528,19 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(685, 22)
 
 [node name="Key3" parent="House" instance=ExtResource("13_cwyby")]
-position = Vector2(316, 231)
+position = Vector2(-205, -187)
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="House/Key3"]
 stream = ExtResource("14_boen6")
 
 [node name="Key1" parent="House" instance=ExtResource("13_cwyby")]
-position = Vector2(455, 272)
+position = Vector2(-733, -186)
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="House/Key1"]
 stream = ExtResource("14_boen6")
 
 [node name="Key2" parent="House" instance=ExtResource("13_cwyby")]
-position = Vector2(459, 160)
+position = Vector2(-552, -389)
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="House/Key2"]
 stream = ExtResource("14_boen6")
@@ -563,9 +560,8 @@ script = ExtResource("9_xhimc")
 darkness_node = NodePath("../CanvasLayer/ColorRect")
 cat = NodePath("../Cat")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LightZone"]
-position = Vector2(327, -221.5)
-shape = SubResource("RectangleShape2D_glv4d")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LightZone"]
+polygon = PackedVector2Array(-17, -441, -516, -441, -517, 853, -21, 853, -19, 6, 670, 7, 670, -444)
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 process_mode = 3
