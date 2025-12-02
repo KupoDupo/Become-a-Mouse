@@ -1,43 +1,46 @@
 [gd_scene load_steps=14 format=3 uid="uid://drd3xeeu5fpya"]
 
 [ext_resource type="Script" uid="uid://ckhpsqtvl7feo" path="res://cat.gd" id="1_52fj1"]
-[ext_resource type="Texture2D" uid="uid://kp41gopgqppm" path="res://Cat Sprite Sheet.png" id="1_hcucf"]
+[ext_resource type="Texture2D" uid="uid://cb6liv8liubjp" path="res://CatSpriteSheetNew.png" id="2_52fj1"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_52fj1"]
+points = PackedVector2Array(0, 0, 50, -15, 50, 15)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52fj1"]
 radius = 8.638611
 height = 20.374264
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fl1u"]
-atlas = ExtResource("1_hcucf")
-region = Rect2(0, 128, 32, 32)
+atlas = ExtResource("2_52fj1")
+region = Rect2(0, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w46py"]
-atlas = ExtResource("1_hcucf")
-region = Rect2(32, 128, 32, 32)
+atlas = ExtResource("2_52fj1")
+region = Rect2(32, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2u0g4"]
-atlas = ExtResource("1_hcucf")
-region = Rect2(64, 128, 32, 32)
+atlas = ExtResource("2_52fj1")
+region = Rect2(64, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hdoq"]
-atlas = ExtResource("1_hcucf")
-region = Rect2(96, 128, 32, 32)
+atlas = ExtResource("2_52fj1")
+region = Rect2(96, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2v165"]
-atlas = ExtResource("1_hcucf")
-region = Rect2(128, 128, 32, 32)
+atlas = ExtResource("2_52fj1")
+region = Rect2(128, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eyw7o"]
-atlas = ExtResource("1_hcucf")
-region = Rect2(160, 128, 32, 32)
+atlas = ExtResource("2_52fj1")
+region = Rect2(160, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7rjga"]
-atlas = ExtResource("1_hcucf")
-region = Rect2(192, 128, 32, 32)
+atlas = ExtResource("2_52fj1")
+region = Rect2(192, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_giwe8"]
-atlas = ExtResource("1_hcucf")
-region = Rect2(224, 128, 32, 32)
+atlas = ExtResource("2_52fj1")
+region = Rect2(224, 192, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ma4b3"]
 animations = [{
@@ -71,31 +74,13 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_52fj1"]
-points = PackedVector2Array(0, 0, 50, -15, 50, 15)
-
 [node name="Cat" type="CharacterBody2D"]
 z_index = 1
+scale = Vector2(0.8169655, 0.8169655)
 script = ExtResource("1_52fj1")
 
-[node name="Hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-rotation = 3.1415927
-scale = Vector2(0.82785094, -0.6871414)
-shape = SubResource("CapsuleShape2D_52fj1")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -11)
-sprite_frames = SubResource("SpriteFrames_ma4b3")
-animation = &"walk"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 3.1415927
-scale = Vector2(0.8103155, -0.6871414)
-shape = SubResource("CapsuleShape2D_52fj1")
-
 [node name="VisionCone" type="Area2D" parent="."]
+position = Vector2(0, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionCone"]
 shape = SubResource("ConvexPolygonShape2D_52fj1")
@@ -104,6 +89,26 @@ shape = SubResource("ConvexPolygonShape2D_52fj1")
 color = Color(0.13319641, 0.13319641, 0.13319638, 0.56078434)
 polygon = PackedVector2Array(0, 0, 50, -15, 50, 15)
 
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-8.526513e-14, -12)
+rotation = -3.1415925
+scale = Vector2(1.434575, -0.9386679)
+shape = SubResource("CapsuleShape2D_52fj1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_ma4b3")
+animation = &"walk"
+frame_progress = 0.08149996
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8.526513e-14, -12)
+rotation = 3.1415927
+scale = Vector2(1.2385483, -0.8104042)
+shape = SubResource("CapsuleShape2D_52fj1")
+
 [connection signal="body_entered" from="VisionCone" to="." method="_on_vision_cone_body_entered"]
 [connection signal="body_exited" from="VisionCone" to="." method="_on_vision_cone_body_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

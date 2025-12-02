@@ -468,7 +468,6 @@ unique_name_in_owner = true
 z_index = 999
 position = Vector2(-8, 0)
 script = ExtResource("2_1nuxl")
-speed = 151.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(464, 305.00003)
@@ -515,8 +514,6 @@ material = SubResource("ShaderMaterial_pgab2")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_right = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
