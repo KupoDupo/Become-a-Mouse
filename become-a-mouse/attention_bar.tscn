@@ -41,7 +41,7 @@ theme_override_constants/margin_bottom = 32
 layout_mode = 0
 offset_left = 36.0
 offset_top = 43.0
-offset_right = 351.0
+offset_right = 257.0
 offset_bottom = 62.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_llvbr")
 
@@ -61,7 +61,7 @@ z_index = 1
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 314.0
+offset_right = 220.0
 offset_bottom = 18.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_03b1d")
 
