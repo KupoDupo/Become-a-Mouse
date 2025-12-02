@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var max_idle_time: float = 2.0
 
 @export var player: Node2D
-@export var chase_speed: float = 120.0
+@export var chase_speed: float = 135.0
 
 @onready var vision_cone = $VisionCone
 @export var attention_gain_in_zone: float = 10.0
