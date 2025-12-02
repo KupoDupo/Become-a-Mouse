@@ -32,6 +32,13 @@ func _physics_process(delta):
 	_update_animation()
 	move_and_slide()
 
+	# After movement, tell any box we bumped into to move
+	for i in range(get_slide_collision_count()):
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+		if collider and collider.has_method("add_push"):
+			collider.add_push(direction)
+
 
 func _update_animation() -> void:
 	if anim == null:

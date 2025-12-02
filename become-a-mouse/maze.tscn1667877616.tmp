@@ -458,7 +458,7 @@ position = Vector2(412, 304)
 scale = Vector2(1.0014726, 1)
 
 [node name="MazeDoor2" parent="." instance=ExtResource("2_a8wcq")]
-position = Vector2(478, 626)
+position = Vector2(429, 432)
 
 [node name="CheeseZone" parent="." instance=ExtResource("15_uywvj")]
 position = Vector2(285, 465)
@@ -528,7 +528,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(685, 22)
 
 [node name="Key3" parent="House" instance=ExtResource("13_cwyby")]
-position = Vector2(-219, 475)
+position = Vector2(-205, -187)
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="House/Key3"]
 stream = ExtResource("14_boen6")
@@ -592,16 +592,18 @@ offset_right = 630.0
 offset_bottom = 354.0
 text = "Retry"
 
+[node name="Box" parent="." instance=ExtResource("19_7srt7")]
+position = Vector2(326.99997, 273)
+scale = Vector2(0.1780488, 0.1780488)
+
+[node name="Box2" parent="." instance=ExtResource("19_7srt7")]
+position = Vector2(135.00002, 209)
+scale = Vector2(0.1780488, 0.1780488)
+
 [node name="MazeDoor3" parent="." instance=ExtResource("20_ru6h2")]
 position = Vector2(229, 509)
 
-[node name="Box2" parent="." instance=ExtResource("19_7srt7")]
-position = Vector2(134, 210)
-
-[node name="Box" parent="." instance=ExtResource("19_7srt7")]
-position = Vector2(326, 273)
-
 [node name="Box3" parent="." instance=ExtResource("19_7srt7")]
-position = Vector2(454, 434)
+position = Vector2(454, 332)
 
 [connection signal="pressed" from="GameOver/Retry" to="GameOver" method="_on_retry_pressed"]
