@@ -568,7 +568,7 @@ script = ExtResource("10_glv4d")
 [node name="Label" type="Label" parent="GameOver"]
 z_index = 2
 anchors_preset = -1
-anchor_left = -0.019097222
+anchor_left = -0.171875
 anchor_right = -0.171875
 offset_left = 403.0
 offset_top = 202.0
@@ -581,7 +581,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="GameOver"]
 anchors_preset = -1
-anchor_left = -0.19878472
+anchor_left = -0.41319445
+anchor_top = -0.12345679
 anchor_right = -0.41319445
 anchor_bottom = -0.12345679
 offset_left = 592.0
@@ -609,4 +610,6 @@ position = Vector2(326, 273)
 [node name="Box3" parent="." instance=ExtResource("19_7srt7")]
 position = Vector2(454, 434)
 
+[connection signal="body_entered" from="LightZone" to="Player" method="_on_house_area_body_entered"]
+[connection signal="body_exited" from="LightZone" to="Player" method="_on_house_area_body_exited"]
 [connection signal="pressed" from="GameOver/Retry" to="GameOver" method="_on_retry_pressed"]
