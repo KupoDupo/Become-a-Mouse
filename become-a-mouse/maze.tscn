@@ -469,7 +469,6 @@ unique_name_in_owner = true
 z_index = 999
 position = Vector2(-8, 0)
 script = ExtResource("2_1nuxl")
-speed = 151.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(464, 305.00003)
@@ -593,4 +592,6 @@ offset_right = 630.0
 offset_bottom = 354.0
 text = "Retry"
 
+[connection signal="body_entered" from="LightZone" to="Player" method="_on_house_area_body_entered"]
+[connection signal="body_exited" from="LightZone" to="Player" method="_on_house_area_body_exited"]
 [connection signal="pressed" from="GameOver/Retry" to="GameOver" method="_on_retry_pressed"]
