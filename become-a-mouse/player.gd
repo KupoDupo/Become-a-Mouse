@@ -17,7 +17,6 @@ var held_key_id: String = "" # empty = not holding anything
 @onready var in_house: bool = false;
 
 func _ready() -> void:
-	print(in_house)
 	held_item.hide()
 
 # Find screen center to update shader and move it w/player for vision blinding
@@ -97,10 +96,8 @@ func consume_key() -> void:
 func _on_house_area_body_entered(body: Node2D) -> void:
 	if body == self:
 		in_house = true
-		print(in_house)
 
 
 func _on_house_area_body_exited(body: Node2D) -> void:
 	if body == self:
 		in_house = false
-		print(in_house)

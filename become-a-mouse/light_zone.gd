@@ -30,12 +30,8 @@ func _is_player(body: Node) -> bool:
 
 func _set_darkness_strength(value: float) -> void:
 	if darkness_node == null:
-		print("No darkness_node assigned!")
 		return
 
 	var mat := darkness_node.material
 	if mat is ShaderMaterial:
 		(mat as ShaderMaterial).set_shader_parameter("darkness_strength", value)
-		print("Set darkness_strength to ", value)
-	else:
-		print("darkness_node.material is not a ShaderMaterial!")

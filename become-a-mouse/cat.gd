@@ -43,6 +43,18 @@ func _ready() -> void:
 
 	anim.animation = "walk"
 	_enter_idle_state()
+	_on_player_safe()
+
+func _on_player_spotted():
+	var cam := get_viewport().get_camera_2d()
+	if cam and cam.has_method("start_shake"):
+		cam.start_shake(1.0, 0.7)  # strong shake & switch to panic music
+
+
+func _on_player_safe():
+	var cam := get_viewport().get_camera_2d()
+	if cam and cam.has_method("stop_shake"):
+		cam.stop_shake()  # stop shake & fade back to calm music
 
 
 func _physics_process(delta: float) -> void:
@@ -67,17 +79,23 @@ func _physics_process(delta: float) -> void:
 				state = State.CHASE
 				if cat_sound_player and not cat_sound_player.playing:
 					cat_sound_player.play()
+					_on_player_spotted()
 			elif state_time_left <= 0.0:
+				_on_player_safe()
 				_enter_walk_state()
+			else:
+				_on_player_safe()
 
 		State.WALK:
 			if _should_start_chase():
 				state = State.CHASE
 				if cat_sound_player and not cat_sound_player.playing:
 					cat_sound_player.play()
+					_on_player_spotted()
 			else:
 				state_time_left -= delta
 				velocity = direction * move_speed
+				_on_player_safe()
 
 				if velocity.length() > 0:
 					vision_cone.rotation = velocity.angle()

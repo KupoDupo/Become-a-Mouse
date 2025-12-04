@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://cu4epqrle8hdc"]
+[gd_scene load_steps=49 format=4 uid="uid://cu4epqrle8hdc"]
 
 [ext_resource type="Texture2D" uid="uid://ca2kys22xltla" path="res://Pipes.png" id="1_u11kd"]
 [ext_resource type="Script" uid="uid://c70vfmdb2uf0c" path="res://player.gd" id="2_1nuxl"]
@@ -9,7 +9,10 @@
 [ext_resource type="Shader" uid="uid://dfns168vl56b8" path="res://maze.gdshader" id="5_ugm30"]
 [ext_resource type="Texture2D" uid="uid://b4pves5mnxdob" path="res://key.png" id="6_ifb1s"]
 [ext_resource type="PackedScene" uid="uid://bxutwg7egoxdf" path="res://attention_bar.tscn" id="6_pgab2"]
+[ext_resource type="Script" uid="uid://cateamna3ffxb" path="res://camera_2d.gd" id="6_ra3ji"]
+[ext_resource type="AudioStream" uid="uid://dwkx82d0e3h3t" path="res://BackgroundMusic.mp3" id="7_bfm34"]
 [ext_resource type="PackedScene" uid="uid://fx6mo3jjhdk3" path="res://house.tscn" id="7_nw8dj"]
+[ext_resource type="AudioStream" uid="uid://bxstvc4t6a700" path="res://ChaseMusic.mp3" id="8_nggnh"]
 [ext_resource type="PackedScene" uid="uid://drd3xeeu5fpya" path="res://cat.tscn" id="8_xhimc"]
 [ext_resource type="AudioStream" uid="uid://d4i5103bwqowt" path="res://kenney_roguelike-indoors/SweetSounds_SFX/WAV/Jump.wav" id="9_eorol"]
 [ext_resource type="Script" uid="uid://e4x1ax3m34h0" path="res://light_zone.gd" id="9_xhimc"]
@@ -20,6 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://cg7wrnjvdt7wh" path="res://cheese_zone.tscn" id="15_uywvj"]
 [ext_resource type="PackedScene" uid="uid://dfod3hkagbmfl" path="res://box.tscn" id="19_7srt7"]
 [ext_resource type="PackedScene" uid="uid://c050qhr50gykn" path="res://maze_door2.tscn" id="20_ru6h2"]
+[ext_resource type="AudioStream" uid="uid://dsan6lgnv6xc" path="res://game_over_sound.mp3" id="22_nggnh"]
+[ext_resource type="AudioStream" uid="uid://dbanoj8ylhus3" path="res://game_win_sound.mp3" id="23_t6et7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgab2"]
 texture = ExtResource("1_u11kd")
@@ -483,9 +488,22 @@ blend_mode = 2
 range_layer_max = 1
 texture = ExtResource("4_1nuxl")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("calm_music", "panic_music")]
 position = Vector2(464, 305)
 zoom = Vector2(3, 3)
+script = ExtResource("6_ra3ji")
+calm_music = NodePath("Background")
+panic_music = NodePath("Chase")
+
+[node name="Background" type="AudioStreamPlayer2D" parent="Player/Camera2D"]
+stream = ExtResource("7_bfm34")
+volume_db = -0.5
+parameters/looping = true
+
+[node name="Chase" type="AudioStreamPlayer2D" parent="Player/Camera2D"]
+stream = ExtResource("8_nggnh")
+volume_db = -0.5
+parameters/looping = true
 
 [node name="MouseMove" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(464.015, 303.505)
@@ -560,43 +578,59 @@ cat = NodePath("../Cat")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LightZone"]
 polygon = PackedVector2Array(-17, -441, -516, -441, -517, 853, -21, 853, -19, 6, 670, 7, 670, -444)
 
-[node name="GameOver" type="CanvasLayer" parent="."]
+[node name="GameOver" type="CanvasLayer" parent="." node_paths=PackedStringArray("game_over_sound", "game_win_sound")]
 process_mode = 3
 visible = false
 script = ExtResource("10_glv4d")
+game_over_sound = NodePath("GameOver")
+game_win_sound = NodePath("GameWin")
+
+[node name="Panel" type="Panel" parent="GameOver"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="GameOver"]
 z_index = 2
 anchors_preset = -1
-anchor_left = -0.171875
-anchor_right = -0.171875
-offset_left = 403.0
-offset_top = 202.0
-offset_right = 896.0
-offset_bottom = 279.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -84.0
+offset_right = 148.0
+offset_bottom = 18.0
 theme_override_font_sizes/font_size = 25
 text = "Text"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Panel" type="Panel" parent="GameOver"]
-anchors_preset = -1
-anchor_left = -0.41319445
-anchor_top = -0.12345679
-anchor_right = -0.41319445
-anchor_bottom = -0.12345679
-offset_left = 592.0
-offset_top = 187.0
-offset_right = 1187.0
-offset_bottom = 467.0
-metadata/_edit_use_anchors_ = true
 
 [node name="Retry" type="Button" parent="GameOver"]
-offset_left = 467.0
-offset_top = 336.0
-offset_right = 521.0
-offset_bottom = 367.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = 47.0
+offset_right = 26.0
+offset_bottom = 78.0
 text = "Retry"
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="GameOver"]
+stream = ExtResource("22_nggnh")
+
+[node name="GameWin" type="AudioStreamPlayer2D" parent="GameOver"]
+stream = ExtResource("23_t6et7")
 
 [node name="MazeDoor3" parent="." instance=ExtResource("20_ru6h2")]
 position = Vector2(229, 509)
