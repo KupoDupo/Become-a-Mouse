@@ -125,7 +125,6 @@ func _enter_walk_state() -> void:
 	var angle := randf_range(0.0, TAU)
 	direction = Vector2.RIGHT.rotated(angle).normalized()
 
-
 func _chase_player(delta: float) -> void:
 	if player == null or not player_in_light_zone:
 		_enter_idle_state()
