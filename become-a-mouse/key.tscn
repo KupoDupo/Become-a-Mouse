@@ -1,15 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4lqdv14pr8d8"]
+[gd_scene load_steps=5 format=3 uid="uid://d4lqdv14pr8d8"]
 
 [ext_resource type="Script" uid="uid://wgbqoltjbh67" path="res://key.gd" id="1_up4cr"]
+[ext_resource type="Texture2D" uid="uid://b57p42lgq64ob" path="res://glow.png" id="2_krfvd"]
 [ext_resource type="Texture2D" uid="uid://b4pves5mnxdob" path="res://key.png" id="2_p0yg6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_up4cr"]
 size = Vector2(7, 4.3125)
 
 [node name="Key" type="Node2D"]
+scale = Vector2(1.1670649, 1.1670649)
 script = ExtResource("1_up4cr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Glow" type="Sprite2D" parent="."]
+scale = Vector2(0.004033196, 0.004033196)
+texture = ExtResource("2_krfvd")
+
+[node name="KeySprite" type="Sprite2D" parent="."]
 position = Vector2(1.4901161e-08, 0)
 scale = Vector2(0.46875, 0.46875)
 texture = ExtResource("2_p0yg6")

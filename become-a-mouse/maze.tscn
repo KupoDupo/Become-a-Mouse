@@ -526,7 +526,7 @@ position = Vector2(-368, 258)
 position = Vector2(-240, 417)
 
 [node name="Key3" parent="House" instance=ExtResource("13_cwyby")]
-position = Vector2(-225, 480)
+position = Vector2(-239, 344)
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="House/Key3"]
 stream = ExtResource("14_boen6")
@@ -546,7 +546,7 @@ stream = ExtResource("14_boen6")
 [node name="Player" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
 z_index = 999
-position = Vector2(-147, -51)
+position = Vector2(-19, 5)
 script = ExtResource("2_1nuxl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -589,8 +589,8 @@ speed_scale = 2.5
 
 [node name="HeldItem" type="Sprite2D" parent="Player"]
 visible = false
-position = Vector2(464, 306.00003)
-rotation = -2.2454906
+position = Vector2(464, 308.00003)
+rotation = 0.0020165443
 scale = Vector2(0.4129622, 0.4492787)
 texture = ExtResource("6_ifb1s")
 
